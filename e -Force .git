@@ -1,0 +1,5 @@
+[33m4d0e7e4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Fix game integration and UI - All savings games now working, education center matches photos, proper cooldown system, comprehensive README
+[33m8c9c726[m  Complete Modern React/TypeScript Refactor - Bitsacco Ember Savings Game Hub
+[33m7c809ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: update dependencies and Vercel config for successful deployment
+[33m1a15aea[m fix: add Vercel deployment configuration for CDN-based TypeScript bundling
+[33mdc9dd51[m refactor: remove dist folder, use CDN-based TypeScript bundling for simpler deployment

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="#1f2937" stroke="#374151" stroke-width="2"/>
+  
+  <!-- Bitcoin symbol -->
+  <text x="50" y="65" font-family="Arial, sans-serif" font-size="35" font-weight="bold" text-anchor="middle" fill="url(#fireGradient)">₿</text>
+  
+  <!-- Fire emoji style -->
+  <path d="M30 40 Q40 30 50 40 Q60 30 70 40 Q65 50 60 60 Q50 70 40 60 Q35 50 30 40" fill="url(#fireGradient)" opacity="0.3"/>
+</svg>
