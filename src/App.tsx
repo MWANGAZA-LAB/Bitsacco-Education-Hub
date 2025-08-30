@@ -7,26 +7,36 @@ import GameMenu from './components/GameMenu';
 import GamePanel from './components/GamePanel';
 import WelcomeScreen from './components/WelcomeScreen';
 import EducationCenter from './components/EducationCenter';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { logger } from './utils/logger';
 import './styles.css';
 
 const App: React.FC = () => {
   const { savingsGoal, currentGame, setCurrentGame } = useGameStore();
   const [showEducationCenter, setShowEducationCenter] = useState(false);
 
+  // Log app initialization
+  React.useEffect(() => {
+    logger.info('App initialized', { hasSavingsGoal: !!savingsGoal });
+  }, [savingsGoal]);
+
   // Show welcome screen if no savings goal is set
   if (!savingsGoal) {
     return (
-      <WelcomeScreen 
-        onTargetSet={() => {
-          // This will trigger a re-render and show the main app
-        }} 
-      />
+      <ErrorBoundary>
+        <WelcomeScreen 
+          onTargetSet={() => {
+            logger.info('Target set, transitioning to main app');
+          }} 
+        />
+      </ErrorBoundary>
     );
   }
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <ErrorBoundary>
+      <Layout>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Header />
         
         <div className="flex flex-col lg:flex-row h-[calc(100vh-80px)]">
@@ -112,6 +122,7 @@ const App: React.FC = () => {
         </div>
       </div>
     </Layout>
+    </ErrorBoundary>
   );
 };
 

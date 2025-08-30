@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { GAME_CONFIG } from '../config/gameConfig';
+import { validation } from '../utils/validation';
+import { logger } from '../utils/logger';
 
 export type GameType = 'rollDice' | 'drawEnvelope' | 'watchVideo' | 'satJoke' | 'mondayMood' | 'emojiChallenge' | 'groupCount' | 'hodlLetters' | 'snakeSats' | 'privacyJenga';
 
@@ -75,89 +78,116 @@ const createInitialState = () => ({
   }
 });
 
-// Game reward configurations
-const GAME_REWARDS = {
-  rollDice: { min: 5, max: 30 },
-  drawEnvelope: { min: 10, max: 100 },
-  watchVideo: { min: 25, max: 250 },
-  satJoke: { min: 50, max: 50 },
-  mondayMood: { min: 25, max: 75 },
-  emojiChallenge: { min: 40, max: 40 },
-  groupCount: { min: 5, max: 500 },
-  hodlLetters: { min: 20, max: 20 }
-};
-
-// Cooldown durations in milliseconds (5 minutes)
-const COOLDOWN_DURATION = 5 * 60 * 1000;
-
 export const useGameStore = create<GameStore>()(
   persist(
     (set, get) => ({
       ...createInitialState(),
 
       setCurrentGame: (gameType) => {
-        set({ currentGame: gameType });
+        try {
+          if (gameType) {
+            validation.gameType(gameType);
+          }
+          set({ currentGame: gameType });
+          logger.info('Game selected', { gameType });
+        } catch (error) {
+          logger.error('Failed to set current game', { gameType, error: error instanceof Error ? error.message : String(error) });
+        }
       },
 
       setSavingsGoal: (targetKES, month) => {
-        set({
-          savingsGoal: { targetKES, month }
-        });
+        try {
+          validation.savingsGoal(targetKES, month);
+          set({
+            savingsGoal: { targetKES, month }
+          });
+          logger.info('Savings goal set', { targetKES, month });
+        } catch (error) {
+          logger.error('Failed to set savings goal', { targetKES, month, error: error instanceof Error ? error.message : String(error) });
+          throw error; // Re-throw for UI handling
+        }
       },
 
       updateSavingsProgress: (additionalKES) => {
-        set((state) => ({
-          userProgress: {
-            ...state.userProgress,
-            totalKESEarned: state.userProgress.totalKESEarned + additionalKES,
-            totalGamesPlayed: state.userProgress.totalGamesPlayed + 1
-          }
-        }));
+        try {
+          validation.kesAmount(additionalKES);
+          set((state) => ({
+            userProgress: {
+              ...state.userProgress,
+              totalKESEarned: state.userProgress.totalKESEarned + additionalKES,
+              totalGamesPlayed: state.userProgress.totalGamesPlayed + 1
+            }
+          }));
+          logger.info('Progress updated', { additionalKES });
+        } catch (error) {
+          logger.error('Failed to update progress', { additionalKES, error: error instanceof Error ? error.message : String(error) });
+        }
       },
 
       playGame: (gameType) => {
-        set((state) => {
-          const newPlayCount = state.gamePlayCounts[gameType] + 1;
+        try {
+          validation.gameType(gameType);
           
-          // Set cooldown for savings games only
-          const isSavingsGame = ['rollDice', 'drawEnvelope', 'watchVideo', 'satJoke', 'mondayMood', 'emojiChallenge', 'groupCount', 'hodlLetters'].includes(gameType);
-          const newCooldown = isSavingsGame ? Date.now() + COOLDOWN_DURATION : 0;
+          set((state) => {
+            const newPlayCount = state.gamePlayCounts[gameType] + 1;
+            
+            // Set cooldown for savings games only
+            const isSavingsGame = !GAME_CONFIG.educationalGames.includes(gameType as any);
+            const newCooldown = isSavingsGame ? Date.now() + GAME_CONFIG.cooldownDuration : 0;
+            
+            return {
+              gamePlayCounts: {
+                ...state.gamePlayCounts,
+                [gameType]: newPlayCount
+              },
+              cooldowns: {
+                ...state.cooldowns,
+                [gameType]: newCooldown
+              },
+              userProgress: {
+                ...state.userProgress,
+                totalGamesPlayed: state.userProgress.totalGamesPlayed + 1
+              }
+            };
+          });
           
-          return {
-            gamePlayCounts: {
-              ...state.gamePlayCounts,
-              [gameType]: newPlayCount
-            },
-            cooldowns: {
-              ...state.cooldowns,
-              [gameType]: newCooldown
-            },
-            userProgress: {
-              ...state.userProgress,
-              totalGamesPlayed: state.userProgress.totalGamesPlayed + 1
-            }
-          };
-        });
+          logger.info('Game played', { gameType });
+        } catch (error) {
+          logger.error('Failed to play game', { gameType, error: error instanceof Error ? error.message : String(error) });
+        }
       },
 
       resetProgress: () => {
         set(createInitialState());
+        logger.info('Progress reset');
       },
 
       getGameStatus: (gameType) => {
-        const state = get();
-        const isUnlocked = state.unlockedGames.includes(gameType);
-        const cooldownUntil = state.cooldowns[gameType] || 0;
-        
-        return {
-          isUnlocked,
-          cooldownUntil: cooldownUntil > Date.now() ? cooldownUntil : null
-        };
+        try {
+          validation.gameType(gameType);
+          const state = get();
+          const isUnlocked = state.unlockedGames.includes(gameType);
+          const cooldownUntil = state.cooldowns[gameType] || 0;
+          
+          return {
+            isUnlocked,
+            cooldownUntil: cooldownUntil > Date.now() ? cooldownUntil : null
+          };
+        } catch (error) {
+          logger.error('Failed to get game status', { gameType, error: error instanceof Error ? error.message : String(error) });
+          return { isUnlocked: false, cooldownUntil: null };
+        }
       },
 
       getGamePlayCount: (gameType) => {
-        const state = get();
-        return state.gamePlayCounts[gameType] || 0;
+        try {
+          validation.gameType(gameType);
+          const state = get();
+          return state.gamePlayCounts[gameType] || 0;
+        } catch (error) {
+          logger.error('Failed to get game play count', { gameType, error: error instanceof Error ? error.message : String(error) });
+          return 0;
+        }
       }
     }),
     {
