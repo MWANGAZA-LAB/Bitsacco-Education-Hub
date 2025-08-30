@@ -67,7 +67,7 @@ const EducationContentPanel: React.FC<EducationContentPanelProps> = ({
             </button>
             <span className="text-2xl">{category.icon}</span>
             <div>
-              <h2 className="text-xl font-bold">{category.name}</h2>
+              <h2 className="text-xl font-bold">{category.title}</h2>
               <p className="text-bitsacco-100 text-sm mt-1">{category.description}</p>
             </div>
           </div>
@@ -129,11 +129,6 @@ const EducationContentPanel: React.FC<EducationContentPanelProps> = ({
                   )}
                   
                   <div className="flex items-center space-x-4 mt-3">
-                    {item.source && (
-                      <span className="text-xs text-gray-500">
-                        Source: {item.source}
-                      </span>
-                    )}
                     <span className={`text-xs px-2 py-1 rounded-full capitalize ${getTypeColor(item.type)}`}>
                       {item.type}
                     </span>
@@ -150,7 +145,7 @@ const EducationContentPanel: React.FC<EducationContentPanelProps> = ({
             <span>All resources are curated for educational purposes</span>
             <div className="flex items-center space-x-4">
               <span>📌 {category.items.length} resources</span>
-              <span>🎓 {category.name}</span>
+              <span>🎓 {category.title}</span>
             </div>
           </div>
         </div>

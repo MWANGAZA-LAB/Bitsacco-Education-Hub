@@ -146,8 +146,8 @@ const EducationContentViewer: React.FC<EducationContentViewerProps> = ({
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">{item.title}</h2>
-                  {item.source && (
-                    <p className="text-sm text-gray-500">Source: {item.source}</p>
+                  {item.duration && (
+                    <p className="text-sm text-gray-500">Duration: {item.duration}</p>
                   )}
                 </div>
               </div>
@@ -198,7 +198,7 @@ const EducationContentViewer: React.FC<EducationContentViewerProps> = ({
             {/* Footer */}
             <div className="p-4 border-t border-gray-200 bg-gray-50">
               <div className="flex items-center justify-between text-sm text-gray-600">
-                <span className="capitalize">{item.type} • {item.source}</span>
+                <span className="capitalize">{item.type}</span>
                 <button
                   onClick={handleExternalOpen}
                   className="text-bitsacco-600 hover:text-bitsacco-700 font-medium"

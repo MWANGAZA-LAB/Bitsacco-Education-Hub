@@ -13,11 +13,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {children}
+      <div className="flex-1">
+        {children}
+      </div>
       
       {/* Footer */}
       <motion.footer 
-        className="bg-black/20 backdrop-blur-sm border-t border-bitsacco-500/20 py-4"
+        className="bg-black/20 backdrop-blur-sm border-t border-bitsacco-500/20 py-4 mt-auto"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}

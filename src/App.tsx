@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from './store/gameStore';
 import Header from './components/Header';
@@ -13,7 +13,6 @@ import './styles.css';
 
 const App: React.FC = () => {
   const { savingsGoal, currentGame, setCurrentGame } = useGameStore();
-  const [showEducationCenter, setShowEducationCenter] = useState(false);
 
   // Log app initialization
   React.useEffect(() => {
@@ -36,17 +35,17 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <Layout>
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Header />
         
-        <div className="flex flex-col lg:flex-row h-[calc(100vh-80px)]">
+        <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px-80px)]">
           {/* Left Sidebar - Game Menu */}
           <div className="w-full lg:w-80 p-4 lg:p-6">
             <GameMenu />
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 p-4 lg:p-6">
+          <div className="flex-1 p-4 lg:p-6 flex flex-col">
             <AnimatePresence mode="wait">
               {currentGame ? (
                 <motion.div
@@ -112,7 +111,7 @@ const App: React.FC = () => {
                   </div>
 
                   {/* Education Center Section */}
-                  <div className="mt-auto">
+                  <div className="mt-auto mb-4">
                     <EducationCenter />
                   </div>
                 </motion.div>

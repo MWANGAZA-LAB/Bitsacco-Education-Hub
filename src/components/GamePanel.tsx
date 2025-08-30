@@ -14,7 +14,6 @@ import HodlLetters from '../games/savings/HodlLetters';
 
 const GamePanel: React.FC = () => {
   const { currentGame, playGame, getGameStatus, getGamePlayCount, updateSavingsProgress, setCurrentGame } = useGameStore();
-  const [isPlaying, setIsPlaying] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState<{[key: string]: boolean}>({});
 
   // Auto-load iframe for educational games
@@ -24,16 +23,7 @@ const GamePanel: React.FC = () => {
     }
   }, [currentGame]);
 
-  const handlePlayGame = () => {
-    if (!currentGame) return;
-    
-    // For savings games, simulate play
-    setIsPlaying(true);
-    setTimeout(() => {
-      playGame(currentGame);
-      setIsPlaying(false);
-    }, 1000);
-  };
+
 
   const handleGameComplete = (kesEarned: number) => {
     updateSavingsProgress(kesEarned);

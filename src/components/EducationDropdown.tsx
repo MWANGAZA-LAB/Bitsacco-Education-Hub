@@ -99,7 +99,7 @@ const EducationDropdown: React.FC<EducationDropdownProps> = ({
                         <span className="text-xl">{category.icon}</span>
                         <div>
                           <h4 className="font-medium text-gray-900 group-hover:text-bitsacco-600 transition-colors">
-                            {category.name}
+                            {category.title}
                           </h4>
                           <p className="text-sm text-gray-500 mt-1">
                             {category.description}

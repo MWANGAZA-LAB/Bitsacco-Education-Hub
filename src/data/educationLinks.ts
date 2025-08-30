@@ -2,7 +2,7 @@ export interface EducationItem {
   id: string;
   title: string;
   description: string;
-  type: 'video' | 'article' | 'resource' | 'game';
+  type: 'video' | 'article' | 'resource' | 'game' | 'podcast' | 'pdf';
   url: string;
   icon: string;
   duration?: string;
