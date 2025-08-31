@@ -10,12 +10,12 @@ const GameMenu: React.FC = () => {
     savings: {
       title: 'Savings Games',
       icon: '💰',
-      games: ['rollDice', 'drawEnvelope', 'watchVideo', 'satJoke', 'mondayMood', 'emojiChallenge', 'groupCount', 'hodlLetters'] as GameType[]
+      games: ['rollDice', 'drawEnvelope', 'watchVideo'] as GameType[]
     },
     education: {
       title: 'Educational Games',
       icon: '📚',
-      games: ['snakeSats', 'privacyJenga'] as GameType[]
+      games: ['privacyJenga'] as GameType[]
     }
   };
 
@@ -38,7 +38,7 @@ const GameMenu: React.FC = () => {
     const status = getGameStatus(gameType);
     const playCount = getGamePlayCount(gameType);
     
-    if (gameType === 'snakeSats' || gameType === 'privacyJenga') {
+    if (gameType === 'privacyJenga') {
       return 'text-green-400'; // Educational games always available
     }
     
@@ -103,7 +103,7 @@ const GameMenu: React.FC = () => {
                      
                      <div className="flex items-center space-x-2">
                        {/* Only show play count for savings games */}
-                       {gameType !== 'snakeSats' && gameType !== 'privacyJenga' && playCount > 0 && (
+                       {gameType !== 'privacyJenga' && playCount > 0 && (
                          <span className="text-xs bg-gray-600 px-2 py-1 rounded">
                            {playCount}/5
                          </span>

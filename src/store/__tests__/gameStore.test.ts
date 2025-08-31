@@ -76,10 +76,10 @@ describe('GameStore', () => {
     const { result } = renderHook(() => useGameStore());
     
     act(() => {
-      result.current.playGame('snakeSats');
+      result.current.playGame('privacyJenga');
     });
     
-    const status = result.current.getGameStatus('snakeSats');
+    const status = result.current.getGameStatus('privacyJenga');
     expect(status.cooldownUntil).toBeNull();
   });
 

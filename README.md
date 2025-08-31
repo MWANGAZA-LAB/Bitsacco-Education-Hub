@@ -6,7 +6,7 @@ A modern, interactive web application that gamifies Bitcoin savings and educatio
 
 ### Core Functionality
 - **Gamified Savings**: Earn KES through various mini-games
-- **Educational Games**: Learn Bitcoin through Snake Sats and Privacy Jenga
+- **Educational Games**: Learn Bitcoin through Privacy Jenga
 - **Progress Tracking**: Monitor your savings progress with visual indicators
 - **Cooldown System**: Balanced gameplay with 5-minute cooldowns
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
@@ -17,14 +17,8 @@ A modern, interactive web application that gamifies Bitcoin savings and educatio
 - 🎲 **Roll Dice**: Roll a dice and earn 5-30 KES
 - ✉️ **Draw Envelope**: Draw an envelope and earn 10-100 KES
 - 🎥 **Watch Video**: Watch Bitcoin videos and earn 25-250 KES
-- 😂 **Sat Joke**: Rate Bitcoin jokes and earn 50 KES
-- 🌞 **Monday Mood**: Share your Monday mood and earn 25-75 KES
-- 🔥 **Emoji Challenge**: Choose your favorite emoji and earn 40 KES
-- 👥 **Group Count**: Count your group and earn 5-500 KES
-- 🟠 **HODL Letters**: Find HODL letters and earn 20 KES
 
 #### Educational Games
-- 🐍 **Snake Sats**: Learn Bitcoin through the classic Snake game
 - 🧩 **Privacy Jenga**: Learn about Bitcoin privacy through Jenga
 
 ### Education Center

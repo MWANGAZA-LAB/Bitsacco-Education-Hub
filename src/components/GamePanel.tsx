@@ -6,11 +6,6 @@ import { GAMES } from '../types';
 import RollDice from '../games/savings/RollDice';
 import DrawEnvelope from '../games/savings/DrawEnvelope';
 import WatchVideo from '../games/savings/WatchVideo';
-import SatJoke from '../games/savings/SatJoke';
-import MondayMood from '../games/savings/MondayMood';
-import EmojiChallenge from '../games/savings/EmojiChallenge';
-import GroupCount from '../games/savings/GroupCount';
-import HodlLetters from '../games/savings/HodlLetters';
 
 const GamePanel: React.FC = () => {
   const { currentGame, playGame, getGameStatus, getGamePlayCount, updateSavingsProgress, setCurrentGame } = useGameStore();
@@ -18,7 +13,7 @@ const GamePanel: React.FC = () => {
 
   // Auto-load iframe for educational games
   useEffect(() => {
-    if (currentGame === 'snakeSats' || currentGame === 'privacyJenga') {
+    if (currentGame === 'privacyJenga') {
       setIframeLoaded(prev => ({ ...prev, [currentGame]: false }));
     }
   }, [currentGame]);
@@ -86,7 +81,7 @@ const GamePanel: React.FC = () => {
       </div>
 
       {/* Game Status - Only for savings games */}
-      {(currentGame !== 'snakeSats' && currentGame !== 'privacyJenga') && (
+      {(currentGame !== 'privacyJenga') && (
         <div className="bg-gradient-to-r from-gray-700 to-gray-800 rounded-xl p-6 mb-8 shadow-lg border border-gray-600">
           <h3 className="text-lg font-semibold mb-4 text-gray-200">Game Status</h3>
           <div className="grid grid-cols-2 gap-6">
@@ -116,11 +111,11 @@ const GamePanel: React.FC = () => {
 
       {/* Game Interface */}
       <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-8 mb-6 shadow-lg border border-gray-600">
-        {(currentGame !== 'snakeSats' && currentGame !== 'privacyJenga') && (
+        {(currentGame !== 'privacyJenga') && (
           <h3 className="text-xl font-bold mb-6 text-gray-200">🎮 Game Interface</h3>
         )}
         
-        {currentGame === 'snakeSats' && (
+        {currentGame === 'privacyJenga' && (
           <div className="text-center">
             <p className="text-sm text-blue-400 mb-4">Pro Tip: Read the in-game Bitcoin tips!</p>
             <p className="text-xs text-gray-500 mb-2">💡 Click on the game area to focus • Use arrow keys or touch to play</p>
@@ -237,46 +232,6 @@ const GamePanel: React.FC = () => {
         
         {currentGame === 'watchVideo' && (
           <WatchVideo 
-            onComplete={handleGameComplete}
-            onReturnToGames={handleReturnToGames}
-            onGoToEducation={handleGoToEducation}
-          />
-        )}
-        
-        {currentGame === 'satJoke' && (
-          <SatJoke 
-            onComplete={handleGameComplete}
-            onReturnToGames={handleReturnToGames}
-            onGoToEducation={handleGoToEducation}
-          />
-        )}
-        
-        {currentGame === 'mondayMood' && (
-          <MondayMood 
-            onComplete={handleGameComplete}
-            onReturnToGames={handleReturnToGames}
-            onGoToEducation={handleGoToEducation}
-          />
-        )}
-        
-        {currentGame === 'emojiChallenge' && (
-          <EmojiChallenge 
-            onComplete={handleGameComplete}
-            onReturnToGames={handleReturnToGames}
-            onGoToEducation={handleGoToEducation}
-          />
-        )}
-        
-        {currentGame === 'groupCount' && (
-          <GroupCount 
-            onComplete={handleGameComplete}
-            onReturnToGames={handleReturnToGames}
-            onGoToEducation={handleGoToEducation}
-          />
-        )}
-        
-        {currentGame === 'hodlLetters' && (
-          <HodlLetters 
             onComplete={handleGameComplete}
             onReturnToGames={handleReturnToGames}
             onGoToEducation={handleGoToEducation}

@@ -4,7 +4,7 @@ import { GAME_CONFIG } from '../config/gameConfig';
 import { validation } from '../utils/validation';
 import { logger } from '../utils/logger';
 
-export type GameType = 'rollDice' | 'drawEnvelope' | 'watchVideo' | 'satJoke' | 'mondayMood' | 'emojiChallenge' | 'groupCount' | 'hodlLetters' | 'snakeSats' | 'privacyJenga';
+export type GameType = 'rollDice' | 'drawEnvelope' | 'watchVideo' | 'privacyJenga';
 
 export interface SavingsGoal {
   targetKES: number;
@@ -43,29 +43,17 @@ interface GameStore {
 
 const createInitialState = () => ({
   currentGame: null,
-  unlockedGames: ['rollDice', 'drawEnvelope', 'watchVideo', 'satJoke', 'mondayMood', 'emojiChallenge', 'groupCount', 'hodlLetters', 'snakeSats', 'privacyJenga'] as GameType[],
+  unlockedGames: ['rollDice', 'drawEnvelope', 'watchVideo', 'privacyJenga'] as GameType[],
   gamePlayCounts: {
     rollDice: 0,
     drawEnvelope: 0,
     watchVideo: 0,
-    satJoke: 0,
-    mondayMood: 0,
-    emojiChallenge: 0,
-    groupCount: 0,
-    hodlLetters: 0,
-    snakeSats: 0,
     privacyJenga: 0
   },
   cooldowns: {
     rollDice: 0,
     drawEnvelope: 0,
     watchVideo: 0,
-    satJoke: 0,
-    mondayMood: 0,
-    emojiChallenge: 0,
-    groupCount: 0,
-    hodlLetters: 0,
-    snakeSats: 0,
     privacyJenga: 0
   },
   savingsGoal: null,

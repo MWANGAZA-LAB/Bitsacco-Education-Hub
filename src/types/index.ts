@@ -4,12 +4,6 @@ export type GameType =
   | 'rollDice'
   | 'drawEnvelope' 
   | 'watchVideo'
-  | 'satJoke'
-  | 'mondayMood'
-  | 'emojiChallenge'
-  | 'groupCount'
-  | 'hodlLetters'
-  | 'snakeSats'
   | 'privacyJenga';
 
 export type GameCategory = 'savings' | 'educational';
@@ -160,66 +154,6 @@ export const GAMES: Record<GameType, Omit<Game, 'isUnlocked' | 'isCompleted' | '
     maxKES: 250,
     order: 3
   },
-  satJoke: {
-    id: 'satJoke',
-    name: 'Sat Joke',
-    description: 'Rate a Bitcoin joke and earn KES 50',
-    category: 'savings',
-    icon: '😂',
-    minKES: 50,
-    maxKES: 50,
-    order: 4
-  },
-  mondayMood: {
-    id: 'mondayMood',
-    name: 'Monday Mood',
-    description: 'Share your Monday mood and earn KES 25-75',
-    category: 'savings',
-    icon: '🌞',
-    minKES: 25,
-    maxKES: 75,
-    order: 5
-  },
-  emojiChallenge: {
-    id: 'emojiChallenge',
-    name: 'Emoji Challenge',
-    description: 'Choose your favorite emoji and earn KES 40',
-    category: 'savings',
-    icon: '🔥',
-    minKES: 40,
-    maxKES: 40,
-    order: 6
-  },
-  groupCount: {
-    id: 'groupCount',
-    name: 'Group Count',
-    description: 'Count your group and earn KES 5-500',
-    category: 'savings',
-    icon: '👥',
-    minKES: 5,
-    maxKES: 500,
-    order: 7
-  },
-  hodlLetters: {
-    id: 'hodlLetters',
-    name: 'HODL Letters',
-    description: 'Find HODL letters and earn KES 20',
-    category: 'savings',
-    icon: '🟠',
-    minKES: 20,
-    maxKES: 20,
-    order: 8
-  },
-  snakeSats: {
-    id: 'snakeSats',
-    name: 'Snake Sats',
-    description: 'Learn Bitcoin through Snake game',
-    category: 'educational',
-    icon: '🐍',
-    minKES: 0,
-    maxKES: 0,
-    order: 9
-  },
   privacyJenga: {
     id: 'privacyJenga',
     name: 'Privacy Jenga',
@@ -228,7 +162,7 @@ export const GAMES: Record<GameType, Omit<Game, 'isUnlocked' | 'isCompleted' | '
     icon: '🧩',
     minKES: 0,
     maxKES: 0,
-    order: 10
+    order: 4
   }
 };
 
