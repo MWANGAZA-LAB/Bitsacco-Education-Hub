@@ -1,21 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ExternalLink, Wallet } from 'lucide-react';
 
 interface PostGameInterfaceProps {
   gameName: string;
   kesEarned: number;
   onPlayAgain: () => void;
   onReturnToGames: () => void;
-  onGoToEducation: () => void;
 }
 
 const PostGameInterface: React.FC<PostGameInterfaceProps> = ({
   gameName,
   kesEarned,
   onPlayAgain,
-  onReturnToGames,
-  onGoToEducation
+  onReturnToGames
 }) => {
+  const handleMakeDeposit = () => {
+    // Open Bitsacco personal account page in a new tab
+    window.open('https://app.bitsacco.com/personal', '_blank');
+  };
+
   return (
     <motion.div
       className="text-center space-y-6"
@@ -56,6 +60,18 @@ const PostGameInterface: React.FC<PostGameInterfaceProps> = ({
 
       {/* Action Buttons */}
       <div className="space-y-4">
+        {/* Make Deposit Button - Primary Action */}
+        <motion.button
+          className="w-full bg-gradient-to-r from-bitcoin-500 to-bitcoin-600 hover:from-bitcoin-600 hover:to-bitcoin-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
+          onClick={handleMakeDeposit}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Wallet className="w-5 h-5" />
+          <span>Make Deposit to Bitsacco Account</span>
+          <ExternalLink className="w-4 h-4" />
+        </motion.button>
+
         <motion.button
           className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg transition-colors"
           onClick={onPlayAgain}
@@ -65,32 +81,30 @@ const PostGameInterface: React.FC<PostGameInterfaceProps> = ({
           🎮 Play Again
         </motion.button>
         
-        <div className="grid grid-cols-2 gap-4">
-          <motion.button
-            className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
-            onClick={onReturnToGames}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            🎯 More Games
-          </motion.button>
-          
-          <motion.button
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
-            onClick={onGoToEducation}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            📚 Learn
-          </motion.button>
-        </div>
+        <motion.button
+          className="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+          onClick={onReturnToGames}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          🎯 More Games
+        </motion.button>
       </div>
 
-      {/* Motivational Message */}
+      {/* Enhanced Motivational Message */}
       <div className="bg-gradient-to-br from-orange-900/20 to-red-900/20 border border-orange-500/30 rounded-lg p-4">
+        <div className="flex items-center space-x-2 mb-2">
+          <span className="text-orange-400 text-lg">🔥</span>
+          <span className="text-orange-400 font-semibold">Keep the fire burning!</span>
+        </div>
         <p className="text-sm text-gray-300">
-          <span className="text-orange-400 font-semibold">Keep the fire burning! 🔥</span> Every KES saved brings you closer to your Bitcoin goals.
+          Every KES saved brings you closer to your Bitcoin goals. Make your deposit now to start building your future!
         </p>
+        <div className="mt-3 p-3 bg-gray-800/50 rounded-lg">
+          <p className="text-xs text-gray-400">
+            💡 <strong>Pro Tip:</strong> Regular deposits, even small amounts, compound over time. Consistency beats perfection!
+          </p>
+        </div>
       </div>
     </motion.div>
   );

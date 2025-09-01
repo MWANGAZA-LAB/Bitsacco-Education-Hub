@@ -4,7 +4,7 @@ import { GAME_CONFIG } from '../config/gameConfig';
 import { validation } from '../utils/validation';
 import { logger } from '../utils/logger';
 
-export type GameType = 'rollDice' | 'drawEnvelope' | 'watchVideo' | 'privacyJenga';
+import { GameType } from '../types';
 
 export interface SavingsGoal {
   targetKES: number;
@@ -43,18 +43,20 @@ interface GameStore {
 
 const createInitialState = () => ({
   currentGame: null,
-  unlockedGames: ['rollDice', 'drawEnvelope', 'watchVideo', 'privacyJenga'] as GameType[],
+  unlockedGames: ['rollDice', 'drawEnvelope', 'watchVideo', 'privacyJenga', 'dashboard'] as GameType[],
   gamePlayCounts: {
     rollDice: 0,
     drawEnvelope: 0,
     watchVideo: 0,
-    privacyJenga: 0
+    privacyJenga: 0,
+    dashboard: 0
   },
   cooldowns: {
     rollDice: 0,
     drawEnvelope: 0,
     watchVideo: 0,
-    privacyJenga: 0
+    privacyJenga: 0,
+    dashboard: 0
   },
   savingsGoal: null,
   userProgress: {
@@ -154,6 +156,15 @@ export const useGameStore = create<GameStore>()(
         try {
           validation.gameType(gameType);
           const state = get();
+          
+          // Dashboard is always unlocked and accessible
+          if (gameType === 'dashboard') {
+            return {
+              isUnlocked: true,
+              cooldownUntil: null
+            };
+          }
+          
           const isUnlocked = state.unlockedGames.includes(gameType);
           const cooldownUntil = state.cooldowns[gameType] || 0;
           

@@ -1,0 +1,27 @@
+{
+  "name": "Bitsacco Education Hub",
+  "short_name": "Bitsacco",
+  "description": "Financial literacy education platform with gamified learning",
+  "start_url": "/Bitsacco-Education-Hub/",
+  "display": "standalone",
+  "background_color": "#1f2937",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Bitsacco-Education-Hub/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Bitsacco-Education-Hub/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "finance", "productivity"],
+  "lang": "en",
+  "scope": "/Bitsacco-Education-Hub/"
+}

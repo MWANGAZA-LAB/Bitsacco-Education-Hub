@@ -5,16 +5,10 @@ import { X, ExternalLink, Lightbulb } from 'lucide-react';
 interface ProTipModalProps {
   isOpen: boolean;
   onClose: () => void;
-  gameType: 'snakeSats' | 'privacyJenga';
+  gameType: 'privacyJenga';
 }
 
 const PRO_TIPS = {
-  snakeSats: {
-    title: '🐍 SnakeSats Pro Tip',
-    tip: 'Read the in-game Bitcoin tips carefully! Each tip teaches you about Bitcoin fundamentals like scarcity, decentralization, and the importance of self-custody.',
-    gameUrl: 'https://mwangaza-lab.github.io/snakesats/',
-    gameName: 'SnakeSats Game'
-  },
   privacyJenga: {
     title: '🧩 Privacy Jenga Pro Tip',
     tip: 'Pay attention to the privacy lessons in the game! Understanding privacy is crucial for protecting your Bitcoin and personal information in the digital age.',

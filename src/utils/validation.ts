@@ -25,9 +25,7 @@ export const validation = {
   // Validate game type
   gameType: (gameType: string) => {
     const validGames = [
-      'rollDice', 'drawEnvelope', 'watchVideo', 'satJoke', 
-      'mondayMood', 'emojiChallenge', 'groupCount', 'hodlLetters',
-      'snakeSats', 'privacyJenga'
+      'rollDice', 'drawEnvelope', 'watchVideo', 'privacyJenga', 'dashboard'
     ];
 
     if (!validGames.includes(gameType)) {

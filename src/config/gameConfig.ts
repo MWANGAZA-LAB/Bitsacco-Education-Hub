@@ -1,9 +1,9 @@
 // Centralized game configuration
 export const GAME_CONFIG = {
   rewards: {
-    rollDice: { min: 5, max: 30, cooldown: 300000 },
+    rollDice: { min: 5, max: 50, cooldown: 300000 },
     drawEnvelope: { min: 10, max: 100, cooldown: 300000 },
-    watchVideo: { min: 25, max: 250, cooldown: 300000 }
+    watchVideo: { min: 25, max: 150, cooldown: 300000 }
   },
   cooldownDuration: 5 * 60 * 1000, // 5 minutes
   maxPlaysPerGame: 5,

@@ -4,7 +4,8 @@ export type GameType =
   | 'rollDice'
   | 'drawEnvelope' 
   | 'watchVideo'
-  | 'privacyJenga';
+  | 'privacyJenga'
+  | 'dashboard';
 
 export type GameCategory = 'savings' | 'educational';
 
@@ -91,67 +92,38 @@ export interface MonthChallenge {
   theme: string;
 }
 
-export const MONTH_CHALLENGES: Record<string, MonthChallenge> = {
-  september: {
-    month: 'september',
-    dailyTarget: 50,
-    monthlyGoal: { min: 1500, max: 2000 },
-    bonus: 'Foundation building',
-    theme: 'Getting started'
-  },
-  october: {
-    month: 'october', 
-    dailyTarget: 100,
-    monthlyGoal: { min: 3000, max: 4000 },
-    bonus: '+500 KES side income bonus',
-    theme: 'Step it up'
-  },
-  november: {
-    month: 'november',
-    dailyTarget: 150, 
-    monthlyGoal: { min: 4500, max: 5000 },
-    bonus: 'Accountability groups',
-    theme: 'No excuses'
-  },
-  december: {
-    month: 'december',
-    dailyTarget: 200,
-    monthlyGoal: { min: 6000, max: 7000 }, 
-    bonus: 'Festive rewards',
-    theme: 'Festive goal'
-  }
-};
+// MONTH_CHALLENGES moved to gameConfig.ts to avoid duplication
 
 // Game configurations
 export const GAMES: Record<GameType, Omit<Game, 'isUnlocked' | 'isCompleted' | 'cooldownUntil'>> = {
   rollDice: {
     id: 'rollDice',
-    name: 'Roll Dice',
-    description: 'Roll a dice and earn KES 5-30',
+    name: 'Investment Risk Simulator',
+    description: 'Learn investment risk management through real scenarios',
     category: 'savings',
-    icon: '🎲',
+    icon: '📊',
     minKES: 5,
-    maxKES: 30,
+    maxKES: 50,
     order: 1
   },
   drawEnvelope: {
     id: 'drawEnvelope',
-    name: 'Draw Envelope',
-    description: 'Draw an envelope and earn KES 10-100',
+    name: 'Emergency Fund Builder',
+    description: 'Learn emergency fund importance through real scenarios',
     category: 'savings',
-    icon: '✉️',
-    minKES: 10,
+    icon: '🏥',
+    minKES: 5,
     maxKES: 100,
     order: 2
   },
   watchVideo: {
     id: 'watchVideo',
-    name: 'Watch Video',
-    description: 'Watch a Bitcoin video and earn KES 25-250',
+    name: 'Interactive Learning Hub',
+    description: 'Learn Bitcoin through videos, quizzes, and actionable tasks',
     category: 'savings',
-    icon: '🎥',
+    icon: '📚',
     minKES: 25,
-    maxKES: 250,
+    maxKES: 150,
     order: 3
   },
   privacyJenga: {
@@ -163,6 +135,16 @@ export const GAMES: Record<GameType, Omit<Game, 'isUnlocked' | 'isCompleted' | '
     minKES: 0,
     maxKES: 0,
     order: 4
+  },
+  dashboard: {
+    id: 'dashboard',
+    name: 'Personal Dashboard',
+    description: 'Track your financial progress and goals',
+    category: 'savings',
+    icon: '📊',
+    minKES: 0,
+    maxKES: 0,
+    order: 5
   }
 };
 
