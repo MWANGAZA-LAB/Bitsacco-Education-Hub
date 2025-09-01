@@ -189,8 +189,16 @@ const PersonalDashboard: React.FC = () => {
             <DashboardOverview 
               financialMetrics={financialMetrics}
               financialGoals={financialGoals}
-              userProgress={0}
-              savingsGoal={0}
+              userProgress={{
+                totalXP: 0,
+                currentStreak: 0,
+                completedLessons: []
+              }}
+              savingsGoal={{
+                targetAmount: 0,
+                currentAmount: 0,
+                deadline: new Date()
+              }}
               onMetricsUpdate={refreshUserData} 
             />
           )}

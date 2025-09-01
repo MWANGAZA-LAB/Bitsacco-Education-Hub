@@ -144,21 +144,21 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
           <h3 className="text-lg font-semibold text-white mb-4">Savings Goal Progress</h3>
           <div className="bg-gray-700 rounded-lg p-4 border border-gray-600">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-gray-400">Target: {formatCurrency(savingsGoal.targetKES)}</span>
+                              <span className="text-gray-400">Target: {formatCurrency(savingsGoal.targetAmount)}</span>
               <span className="text-white font-semibold">
-                {formatCurrency(userProgress.totalKESEarned)}
+                                  {formatCurrency(userProgress.totalXP)}
               </span>
             </div>
             <div className="w-full bg-gray-600 rounded-full h-3">
               <div
                 className="bg-gradient-to-r from-orange-500 to-yellow-500 h-3 rounded-full transition-all duration-300"
-                style={{ width: `${calculateProgress(userProgress.totalKESEarned, savingsGoal.targetKES)}%` }}
+                style={{ width: `${calculateProgress(userProgress.totalXP, savingsGoal.targetAmount)}%` }}
               />
             </div>
             <div className="mt-2 text-sm text-gray-400">
-              {userProgress.totalKESEarned >= savingsGoal.targetKES 
+              {userProgress.totalXP >= savingsGoal.targetAmount 
                 ? '🎉 Goal achieved!' 
-                : `${formatCurrency(savingsGoal.targetKES - userProgress.totalKESEarned)} remaining`
+                : `${formatCurrency(savingsGoal.targetAmount - userProgress.totalXP)} remaining`
               }
             </div>
           </div>
