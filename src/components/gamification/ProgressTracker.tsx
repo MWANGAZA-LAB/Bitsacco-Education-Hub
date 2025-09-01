@@ -29,9 +29,10 @@ const ProgressTracker: React.FC = () => {
   const badges = userBadges;
   const completedLessons = userProgress.completedLessons;
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'badges' | 'leaderboard' | 'stats'>('overview');
+  type TabType = 'overview' | 'badges' | 'leaderboard' | 'stats';
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
 
-  const tabs = [
+  const tabs: Array<{ id: TabType; label: string; icon: React.ReactNode }> = [
     { id: 'overview', label: 'Overview', icon: <BarChart3 className="w-5 h-5" /> },
     { id: 'badges', label: 'Badges', icon: <Award className="w-5 h-5" /> },
     { id: 'leaderboard', label: 'Leaderboard', icon: <Trophy className="w-5 h-5" /> },
@@ -192,7 +193,7 @@ const ProgressTracker: React.FC = () => {
             { id: 'level-5', name: 'Level Legend', emoji: '🏆', description: 'Reach level 5', requirement: 'Level 5' },
             { id: 'perfect-lesson', name: 'Perfect Score', emoji: '💯', description: 'Complete a lesson with 100%', requirement: '100% accuracy' },
             { id: 'daily-goal', name: 'Goal Getter', emoji: '🎯', description: 'Meet daily goal 5 times', requirement: '5 days' }
-          ].map((badge: any) => {
+                     ].map((badge: { id: string; name: string; emoji: string; description: string; requirement: string }) => {
             const isUnlocked = badges.some((b: Badge) => b.id === badge.id);
             return (
               <motion.div
@@ -350,7 +351,7 @@ const ProgressTracker: React.FC = () => {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+                              onClick={() => setActiveTab(tab.id)}
               className={`flex items-center space-x-2 px-6 py-3 rounded-lg mx-2 mb-2 transition-all ${
                 activeTab === tab.id
                   ? 'bg-blue-600 text-white shadow-lg'

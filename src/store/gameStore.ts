@@ -16,7 +16,7 @@ export interface UserProgress {
   totalGamesPlayed: number;
   currentStreak: number;
   longestStreak: number;
-  milestones: any[];
+  milestones: Array<{ id: string; title: string; description: string; isAchieved: boolean }>;
 }
 
 export interface GameStatus {
@@ -122,7 +122,7 @@ export const useGameStore = create<GameStore>()(
             const newPlayCount = state.gamePlayCounts[gameType] + 1;
             
             // Set cooldown for savings games only
-            const isSavingsGame = !GAME_CONFIG.educationalGames.includes(gameType as any);
+            const isSavingsGame = !GAME_CONFIG.educationalGames.includes(gameType as 'privacyJenga');
             const newCooldown = isSavingsGame ? Date.now() + GAME_CONFIG.cooldownDuration : 0;
             
             return {

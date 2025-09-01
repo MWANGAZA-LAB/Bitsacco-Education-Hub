@@ -12,8 +12,16 @@ import FinancialMetricsManager from './FinancialMetricsManager';
 interface DashboardOverviewProps {
   financialMetrics: FinancialMetric[];
   financialGoals: FinancialGoal[];
-  userProgress: any;
-  savingsGoal: any;
+  userProgress: {
+    totalXP: number;
+    currentStreak: number;
+    completedLessons: string[];
+  };
+  savingsGoal: {
+    targetAmount: number;
+    currentAmount: number;
+    deadline: Date;
+  } | null;
   onMetricsUpdate: () => void;
 }
 

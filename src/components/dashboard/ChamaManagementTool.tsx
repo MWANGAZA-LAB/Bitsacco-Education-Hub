@@ -10,9 +10,10 @@ import {
 } from 'lucide-react';
 
 const ChamaManagementTool: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'members' | 'projects' | 'meetings' | 'calculator'>('overview');
+  type TabType = 'overview' | 'members' | 'projects' | 'meetings' | 'calculator';
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
 
-  const tabs = [
+  const tabs: Array<{ id: TabType; label: string; icon: React.ReactNode }> = [
     { id: 'overview', label: 'Overview', icon: <BarChart3 className="w-5 h-5" /> },
     { id: 'members', label: 'Members', icon: <Users className="w-5 h-5" /> },
     { id: 'projects', label: 'Projects', icon: <Target className="w-5 h-5" /> },
@@ -53,7 +54,7 @@ const ChamaManagementTool: React.FC = () => {
         {tabs.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => setActiveTab(tab.id)}
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === tab.id
                 ? 'bg-blue-500 text-white shadow-lg scale-105'

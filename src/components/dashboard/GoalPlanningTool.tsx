@@ -28,13 +28,13 @@ const GoalPlanningTool: React.FC = () => {
   ]);
 
   const [showAddForm, setShowAddForm] = useState(false);
-  const [newGoal, setNewGoal] = useState({
+  const [newGoal, setNewGoal] = useState<Omit<FinancialGoal, 'id'>>({
     name: '',
     targetAmount: 0,
     currentAmount: 0,
     deadline: new Date(Date.now() + 12 * 30 * 24 * 60 * 60 * 1000),
-    category: 'other' as const,
-    priority: 'medium' as const,
+    category: 'other',
+    priority: 'medium',
     monthlyContribution: 0
   });
 
@@ -199,7 +199,7 @@ const GoalPlanningTool: React.FC = () => {
               <label className="block text-sm font-medium text-gray-300 mb-2">Category</label>
               <select
                 value={newGoal.category}
-                onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value as any })}
+                onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value as 'emergency_fund' | 'investment' | 'debt_payoff' | 'retirement' | 'vacation' | 'education' | 'other' })}
                 className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 {categories.map(cat => (
@@ -243,7 +243,7 @@ const GoalPlanningTool: React.FC = () => {
               <label className="block text-sm font-medium text-gray-300 mb-2">Priority</label>
               <select
                 value={newGoal.priority}
-                onChange={(e) => setNewGoal({ ...newGoal, priority: e.target.value as any })}
+                onChange={(e) => setNewGoal({ ...newGoal, priority: e.target.value as 'low' | 'medium' | 'high' })}
                 className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 {priorities.map(pri => (

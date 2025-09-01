@@ -20,10 +20,11 @@ import CourseInterface from './components/gamification/CourseInterface';
 
 // Main App Component
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'education' | 'games' | 'dashboard' | 'course'>('course');
+  type ViewType = 'education' | 'games' | 'dashboard' | 'course';
+  const [currentView, setCurrentView] = useState<ViewType>('course');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const navigationItems = [
+  const navigationItems: Array<{ id: ViewType; label: string; icon: React.ReactNode; primary: boolean }> = [
     { id: 'course', label: 'Learning Course', icon: <Zap className="w-5 h-5" />, primary: true },
     { id: 'education', label: 'Education Hub', icon: <GraduationCap className="w-5 h-5" />, primary: false },
     { id: 'games', label: 'Interactive Tools', icon: <Gamepad2 className="w-5 h-5" />, primary: false },
@@ -76,7 +77,7 @@ const App: React.FC = () => {
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => setCurrentView(item.id as any)}
+                  onClick={() => setCurrentView(item.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     currentView === item.id
                       ? 'bg-blue-600 text-white shadow-lg'
@@ -125,7 +126,7 @@ const App: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => {
-                    setCurrentView(item.id as any);
+                    setCurrentView(item.id);
                     setSidebarOpen(false);
                   }}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all ${

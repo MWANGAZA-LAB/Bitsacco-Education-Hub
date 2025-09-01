@@ -101,7 +101,7 @@ export const useGamificationStore = create<GamificationState>()(
       dailyReminders: dailyReminders.map((message, index) => ({
         id: `reminder-${index}`,
         message,
-        emoji: message.match(/[^\u0000-\u007F]/g)?.join('') || '💰',
+        emoji: message.match(/[^\u0020-\u007F]/g)?.join('') || '💰',
         type: 'motivation' as const,
         shown: false,
         showDate: new Date().toISOString()

@@ -11,7 +11,7 @@ export const useGame = (gameType: GameType) => {
   const playCount = useMemo(() => getGamePlayCount(gameType), [gameType, getGamePlayCount]);
   
   const isEducationalGame = useMemo(() => 
-    GAME_CONFIG.educationalGames.includes(gameType as any), 
+    GAME_CONFIG.educationalGames.includes(gameType as 'privacyJenga'), 
     [gameType]
   );
 

@@ -9,9 +9,10 @@ import {
 } from 'lucide-react';
 
 const SACCOEducationModule: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'lessons' | 'quiz' | 'resources'>('overview');
+  type TabType = 'overview' | 'lessons' | 'quiz' | 'resources';
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
 
-  const tabs = [
+  const tabs: Array<{ id: TabType; label: string; icon: React.ReactNode }> = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'lessons', label: 'Lessons', icon: <Play className="w-5 h-5" /> },
     { id: 'quiz', label: 'Quiz', icon: <Target className="w-5 h-5" /> },
@@ -50,7 +51,7 @@ const SACCOEducationModule: React.FC = () => {
         {tabs.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
+            onClick={() => setActiveTab(tab.id)}
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeTab === tab.id
                 ? 'bg-blue-500 text-white shadow-lg scale-105'

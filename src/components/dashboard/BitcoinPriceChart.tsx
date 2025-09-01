@@ -135,7 +135,7 @@ const BitcoinPriceChart: React.FC = () => {
 
   useEffect(() => {
     calculateHistoricalProjection();
-  }, [historicalSavings, selectedYear]);
+  }, [historicalSavings, selectedYear, bitcoinData, calculateHistoricalProjection]);
 
   const formatCurrency = (amount: number, currency: 'USD' | 'KES' = 'KES') => {
     if (currency === 'USD') {
